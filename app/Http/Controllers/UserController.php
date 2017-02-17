@@ -50,7 +50,7 @@ class UserController extends Controller
                 Auth::login($user, false);
 
                 $userfull = User::with('Department', 'City','Company', 'Role')->where('user_id', $user->user_id)->get();
-                return $userfull;
+                return Response()->json(array('user' => $userfull)); 
             }
             else{
                 return "Password erronea";
