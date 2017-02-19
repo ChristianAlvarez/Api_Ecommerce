@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Encryption\DecryptException;
 use App\User;
+
+#Recursos
+use Intervention\Image\Facades\Image as Image;
+use Carbon\Carbon;
 use Crypt;
 
 class UserController extends Controller
@@ -13,16 +17,27 @@ class UserController extends Controller
    
 
     public function registerUser(Request $profile) {
-        //dd($profile);
-      //$user = User::find($profile->user_id);
-
-      //if ($user === null) {
-          // If not, create one
+          
+      
           $user = new User();
-          $user->user_name = $profile->user_name;
+
+          //$filename = $profile->file('user_photo')->getClientOriginalName();
+
+        $imagen = $profile->file('user_photo');
+
+        $user->user_name = $profile->user_name;
           $user->user_first_name = $profile->user_first_name;
           $user->user_last_name = $profile->user_last_name;
-          $user->user_photo = $profile->user_photo;
+
+          if (!empty($imagen))
+          {
+            $ruta   = '/images/users/';
+            $nombre = sha1(Carbon::now()) . '.' . $imagen->guessExtension();
+
+            $imagen->move(getcwd() . $ruta, $nombre);
+            $user->user_photo = $ruta . $nombre;
+          }
+          
           $user->user_phone = $profile->user_phone;
           $user->user_address = $profile->user_address;
           $user->department_id = $profile->department_id;
@@ -33,7 +48,12 @@ class UserController extends Controller
           $user->role_id = $profile->role_id;
           $user->remember_token = $user->getRememberToken();
           $user->save();
-      //}
+
+
+          //Image::make('image')->save('public/images/users/'.$filename);
+
+           //dd($user);
+  
 
       return $user;
     }
