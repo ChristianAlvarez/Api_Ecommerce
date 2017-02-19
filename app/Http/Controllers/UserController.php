@@ -51,10 +51,12 @@ class UserController extends Controller
 
                 $userfull = User::with('Department', 'City','Company', 'Role')->where('user_id', $user->user_id)->get();
 
-                $jsonObject = $userfull->toJson(JSON_FORCE_OBJECT);
+                return json_encode($userfull);
+
+                //$jsonObject = $userfull->toJson(JSON_FORCE_OBJECT);
                 
                 //return $userfull;
-                return Response($jsonObject, 200, ["Content-Type" => "application/json"]); 
+                //return Response($jsonObject, 200, ["Content-Type" => "application/json"]); 
             }
             else{
                 return "Password erronea";
