@@ -19,24 +19,24 @@ class UserController extends Controller
     public function registerUser(Request $profile) {
           
       
-          $user = new User();
+        $user = new User();
 
-          //$filename = $profile->file('user_photo')->getClientOriginalName();
+        //$filename = $profile->file('user_photo')->getClientOriginalName();
 
         $imagen = $profile->file('user_photo');
 
         $user->user_name = $profile->user_name;
-          $user->user_first_name = $profile->user_first_name;
-          $user->user_last_name = $profile->user_last_name;
+        $user->user_first_name = $profile->user_first_name;
+        $user->user_last_name = $profile->user_last_name;
 
-          if (!empty($imagen))
-          {
+        if (!empty($imagen))
+        {
             $ruta   = '/images/users/';
             $nombre = sha1(Carbon::now()) . '.' . $imagen->guessExtension();
 
             $imagen->move(getcwd() . $ruta, $nombre);
             $user->user_photo = $ruta . $nombre;
-          }
+        }
           
           $user->user_phone = $profile->user_phone;
           $user->user_address = $profile->user_address;

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('user_address')->nullable();
             $table->integer('department_id')->references('department_id')->on('department')->nullable();
             $table->integer('city_id')->references('city_id')->on('city')->nullable();
-            $table->integer('company_id')->references('company_id')->on('cpmpany')->nullable();
+            $table->integer('company_id')->references('company_id')->on('company')->nullable();
             $table->string('user_email')->unique();
             $table->string('user_password');
             $table->integer('role_id')->references('role_id')->on('role');

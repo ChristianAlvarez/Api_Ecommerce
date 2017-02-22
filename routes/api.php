@@ -17,6 +17,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-
+//USER
 Route::post('/users/register','UserController@registerUser');
 Route::post('/users/login','UserController@loginUser');
+
+//PRODUCT
+Route::get('/products/getproducts','ProductController@getProducts');
+Route::post('/products/storeproducts', 'ProductController@storeProducts');

@@ -4,22 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Category extends Model
 {
-	/**
+    /**
      * The attributes that are mass assignable.
      *
      * @var string
      */
-    protected $table = 'city';
+    protected $table = 'category';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'city_id',
-        'city_name',
-        'department_id'
+        'category_id',
+        'category_description',
+        'company_id'
     ];
 }
