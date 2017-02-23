@@ -44,8 +44,7 @@ class Product extends Model
 
     public function Inventory()
     {
-        return $this->hasMany('App\Inventory', 'inventory_id', 'product_id');
-        //return $this->hasManyThrough('App\Inventory', 'App\Product', 'product_id', 'inventory_id');
+        return $this->hasMany('App\Inventory', 'product_id', 'product_id');
     }
 
 }

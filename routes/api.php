@@ -23,4 +23,8 @@ Route::post('/users/login','UserController@loginUser');
 
 //PRODUCT
 Route::get('/products/getproducts','ProductController@getProducts');
-Route::post('/products/storeproducts', 'ProductController@storeProducts');
+Route::post('/products/storeproduct', 'ProductController@storeProduct');
+
+//CUSTOMER
+Route::get('/customers/getcustomers','CustomerController@getCustomers');
+Route::post('/customers/storecustomer', 'CustomerController@storeCustomer');

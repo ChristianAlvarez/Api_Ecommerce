@@ -21,8 +21,9 @@ class CreateCustomerTable extends Migration
             $table->string('customer_photo')->nullable();
             $table->string('customer_phone')->nullable();
             $table->string('customer_address')->nullable();
-            $table->string('customer_latitude')->nullable();
-            $table->string('customer_longitude')->nullable();
+            $table->string('customer_email')->nullable();
+            $table->double('customer_latitude')->nullable();
+            $table->double('customer_longitude')->nullable();
             $table->integer('department_id')->references('department_id')->on('department')->nullable();
             $table->integer('city_id')->references('city_id')->on('city')->nullable();
             $table->boolean('IsUpdated');

@@ -14,11 +14,9 @@ use Crypt;
 
 class UserController extends Controller
 {
-   
 
     public function registerUser(Request $profile) {
           
-      
         $user = new User();
 
         //$filename = $profile->file('user_photo')->getClientOriginalName();

@@ -3,29 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Customer;
 
 #Recursos
 use Intervention\Image\Facades\Image as Image;
 use Carbon\Carbon;
 
-class ProductController extends Controller
+class CustomerController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getProducts()
+    public function getCustomers()
     {
-        $products = Product::with('Company', 'Category','Tax', 'Inventory')->get();
+        $customers = Customer::with('Department', 'City','CompanyCustomer', 'Order', 'Sale')->get();
 
-        if (!empty($products)) {
-            return json_encode($products);
+        if (!empty($customers)) {
+            return json_encode($customers);
         }
         else
         {
-            return "No products";
+            return "No customers";
         }
     }
 
@@ -35,36 +36,39 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeProduct(Request $request)
-    {
-        $product = new Product();
+    public function storeCustomer(Request $request) {
 
-        $imagen = $request->file('product_image');
+        $customer = new Customer();
 
-        $product->product_description = $request->product_description;
-        $product->product_barcode = $request->product_barcode;
-        $product->product_price = $request->product_price;
+        $imagen = $request->file('customer_photo');
+
+        $customer->customer_username = $request->customer_username;
+        $customer->customer_firstname = $request->customer_firstname;
+        $customer->customer_lastname = $request->customer_lastname;
 
         if (!empty($imagen))
         {
-            $ruta   = '/images/products/';
+            $ruta   = '/images/customers/';
             $nombre = sha1(Carbon::now()) . '.' . $imagen->guessExtension();
 
             $imagen->move(getcwd() . $ruta, $nombre);
-            $product->product_image = $ruta . $nombre;
+            $customer->customer_photo = $ruta . $nombre;
         }
           
-        $product->product_remarks = $request->product_remarks;
-        $product->product_stock = $request->product_stock;
-        $product->company_id = $request->company_id;
-        $product->category_id = $request->category_id;
-        $product->tax_id = $request->tax_id;
-        $product->save();
-  
-      return $product;
-    }
+        $customer->customer_phone = $request->customer_phone;
+        $customer->customer_address = $request->customer_address;
+        $customer->customer_latitude = $request->customer_latitude;
+        $customer->customer_longitude = $request->customer_longitude;
+        $customer->IsUpdated = $request->IsUpdated;
+        $customer->department_id = $request->department_id;
+        $customer->city_id = $request->city_id;
+         
+        $customer->save();
 
-    /**
+      return $customer;
+    }
+    
+     /**
      * Display the specified resource.
      *
      * @param  int  $id
