@@ -3,30 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Customer;
+use App\City;
 
 #Recursos
 use Intervention\Image\Facades\Image as Image;
 use Carbon\Carbon;
 
-class CustomerController extends Controller
+class CityController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getCustomers()
+    public function getCities()
     {
-        $customers = Customer::with('Department', 'City','CompanyCustomer', 'Order', 'Sale')->get();
+        $cities = City::with('Department')->get();
 
-        if (!empty($customers)) {
-            return json_encode($customers);
+        if (!empty($cities)) {
+            return json_encode($cities);
         }
         else
         {
-            return "No customers";
+            return "No cities";
         }
     }
 
@@ -36,7 +35,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCustomer(Request $request) {
+    public function storeCities(Request $request) {
 
         $customer = new Customer();
 
@@ -68,8 +67,8 @@ class CustomerController extends Controller
 
       return $customer;
     }
-    
-     /**
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
