@@ -32,3 +32,7 @@ Route::post('/customers/storecustomer', 'CustomerController@storeCustomer');
 //CITIES
 Route::get('/cities/getcities','CityController@getCities');
 Route::post('/cities/storecities', 'CityController@storeCities');
+
+//DEPARTMENTS
+Route::get('/departments/getdepartments','DepartmentController@getDepartments');
+Route::post('/departments/storedepartments', 'DepartmentController@storeDepartments');
