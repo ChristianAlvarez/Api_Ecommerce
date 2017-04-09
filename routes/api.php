@@ -28,6 +28,9 @@ Route::post('/products/storeproduct', 'ProductController@storeProduct');
 //CUSTOMER
 Route::get('/customers/getcustomers','CustomerController@getCustomers');
 Route::post('/customers/storecustomer', 'CustomerController@storeCustomer');
+Route::post('/customers/storecustomerxamarin', 'CustomerController@storeCustomerXamarin');
+Route::post('/customers/storeimagecustomerxamarin', 'CustomerController@storeImageCustomerXamarin');
+Route::delete('/customers/{id}','CustomerController@destroyCustomer');
 
 //CITIES
 Route::get('/cities/getcities','CityController@getCities');
