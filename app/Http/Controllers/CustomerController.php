@@ -105,11 +105,14 @@ class CustomerController extends Controller
      */
     public function storeImageCustomerXamarin(Request $request) {
 
-        $request = $request->all();
+        //$request = $request->all();
 
+        //$id =  $request['id'];
+        //dd($request);
+        $imagen = $request->file('image');
         $id =  $request->id;
 
-        $imagen = $request->file('array');
+        //dd($imagen);
 
         if (!empty($imagen))
         {
